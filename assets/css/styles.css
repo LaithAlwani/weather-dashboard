@@ -2,6 +2,68 @@
     display:none
 }
 
+#city-name{
+    padding-left: 10px;
+}
+#units{
+    padding-left: 10px;
+}
+
 .recent-city{
     background-color: lightgray;
+}
+
+.low{
+    background-color: green;
+}
+.moderate{
+    background-color: yellow;
+}
+.high{
+    background-color: orange;
+}
+.very-high{
+    background-color: red;
+}
+.extrem{
+    background-color: rebeccapurple;
+}
+
+#uvIndex{
+    padding:5px 20px;
+    font-weight: bold;
+    border-radius: 10%;
+    margin-left: 10px;
+}
+
+.card{
+    padding:10px;
+    margin: 10px 0;
+}
+
+@media only screen and (max-width:640px){
+    .card{
+        align-content:space-btween !important;
+    }
+    .card h4{
+        padding-top: 10px;
+        float:left;
+        margin: 10px 0;
+        
+    }
+    .card img{
+        display: inline-block;
+       margin: 10px;
+    }
+
+    .card .future-temp{
+       margin: 10px 30px;
+        
+        display: inline-block
+    } 
+
+    .card .future-humidity{
+        float:right;
+    }
+
 }
