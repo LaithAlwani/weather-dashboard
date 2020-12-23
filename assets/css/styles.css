@@ -8,6 +8,9 @@
 #units{
     padding-left: 10px;
 }
+h3{
+    margin: 0;
+}
 
 .recent-city{
     background-color: lightgray;
