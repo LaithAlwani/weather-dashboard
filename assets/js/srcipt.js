@@ -33,11 +33,19 @@ $("#search-button").click(function () {
       $("#date").text(
         `${cityName.toUpperCase()} (${moment().format("MMM, Do YYYY")})`
       );
+
+      var icon = $("<img>");
+      icon.attr(
+        "src",
+        `http://openweathermap.org/img/w/${response.current.weather[0].icon}.png`
+      );
+
+      $("#date").append(icon);
       $("#temp").text(`temp: ${Math.round(response.current.temp)}`);
       $("#wind").text(`wind: ${response.current.wind_speed}`);
       $("#humidity").text(`Humidity: ${response.current.humidity}%`);
       $("#uvIndex").text(response.current.uvi);
-    //   checking uv Index to decide background color
+      //   checking uv Index to decide background color
       if (response.current.uvi >= 0 && response.current.uvi < 3) {
         $("#uvIndex").addClass("low");
       } else if (response.current.uvi >= 3 && response.current.uvi < 6) {
