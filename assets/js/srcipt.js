@@ -24,7 +24,7 @@ function searchByName(city) {
     lon = response.coord.lon;
     searchByCoordinates(lat, lon);
     $("#date").text(
-      `${city}(${moment().format("MMM, Do YYYY")})`
+      `${city} (${moment().format("MMM, Do YYYY")})`
     );
     // for(var i=0;i<cities.length; i++){
 
@@ -140,6 +140,6 @@ function getData() {
   if (cities === null || cities.length === 0) {
     cities = [];
   } else {
-    searchByName(cities[cities.length -1]);
+    searchByName(cities[0]);
   }
 }

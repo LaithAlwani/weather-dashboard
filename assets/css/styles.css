@@ -11,9 +11,14 @@
 h3{
     margin: 0;
 }
+#recent-header{
+    padding:10px
+}
 
 .recent-city{
-    background-color: lightgray;
+    border: 1px solid lightgray;
+    margin: 0;
+    padding: 10px;
 }
 
 .low{
