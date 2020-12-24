@@ -11,7 +11,7 @@ var lon;
 
 $("#units").on("change", function(){
     if($("#city-name").val().length >0){
-        searchByName($("#city-name").val());
+        searchByName($("#city-name").val().toUpperCase());
     }   
     
 })
@@ -54,8 +54,8 @@ function searchByCoordinates(lat, lon) {
       url: queryUrl,
       method: "GET",
     }).then(function (response) {
-      currentForcast(response);
-      futrueFroecast(response);
+      currentForcast(response, units);
+      futrueFroecast(response,units);
       storeData(cities);
     });
   }
@@ -68,21 +68,15 @@ function renderRecentCity() {
         recentCity.text(cities[i]);
         recentCity.addClass("recent-city uk-padding-small");
         $("#recent-search").append(recentCity);
-        addClick(recentCity);
+        recentCity.click(function(event){
+            searchByName(event.target.textContent);
+            $("#city-name").val(event.target.textContent);
+        })
         
-    }
-  
+    } 
 }
-
-function addClick(city){
-    city.click(function(event){
-        searchByName(event.target.textContent);
-    })
-}
-
-
-
-function currentForcast(data){
+    
+function currentForcast(data,unit){
     var icon = $("<img>");
     icon.attr(
       "src",
@@ -91,8 +85,14 @@ function currentForcast(data){
     icon.attr("alt","weather icon");
 
     $("#city").append(icon);
-    $("#temp").text(`temp: ${Math.round(data.current.temp)}`);
-    $("#wind").text(`wind: ${data.current.wind_speed}`);
+    if(unit ==="Metric"){
+        $("#temp").text(`temp: ${Math.round(data.current.temp)}${String.fromCharCode(176)}C`);
+        $("#wind").text(`wind: ${data.current.wind_speed} Kmh`);
+    }else{
+        $("#temp").text(`temp: ${Math.round(data.current.temp)}${String.fromCharCode(176)}F`);
+        $("#wind").text(`wind: ${data.current.wind_speed} Mph`);
+    }
+    
     $("#humidity").text(`Humidity: ${data.current.humidity}%`);
     $("#uvIndex").text(data.current.uvi);
     //   checking uv Index to decide background color
@@ -112,7 +112,7 @@ function currentForcast(data){
 }
 
 //5 day future forcast function
-function futrueFroecast(data) {
+function futrueFroecast(data,unit) {
   $("#5day-forecast").text("");
   for (var i = 0; i < days; i++) {
     var column = $("<div>");
@@ -132,10 +132,15 @@ function futrueFroecast(data) {
     );
     var temp = $("<p>");
     temp.addClass("future-temp");
-    temp.text(Math.round(data.daily[i].temp.max));
+    if(unit === "Metric"){
+        temp.text(Math.round(data.daily[i].temp.max)+String.fromCharCode(176)+"C");
+    }else{
+        temp.text(Math.round(data.daily[i].temp.max)+String.fromCharCode(176)+"F");
+    }
+    
     var humidity = $("<p>");
     humidity.addClass("future-humidity");
-    humidity.text(data.daily[i].humidity);
+    humidity.text(data.daily[i].humidity+"%");
     card.append(date, icon, temp, humidity);
     column.append(card);
     $("#5day-forecast").append(column);
