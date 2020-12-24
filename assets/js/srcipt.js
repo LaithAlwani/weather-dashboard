@@ -9,7 +9,15 @@ var cities = [];
 var lat;
 var lon;
 
-$("#search-button").click(function () {
+$("#units").on("change", function(){
+    if($("#city-name").val().length >0){
+        searchByName($("#city-name").val());
+    }   
+    
+})
+
+$("#search-button").click(function (event) {
+    event.preventDefault();
   var cityName = $("#city-name").val().toUpperCase();
   searchByName(cityName);
 });
@@ -23,51 +31,56 @@ function searchByName(city) {
     lat = response.coord.lat;
     lon = response.coord.lon;
     searchByCoordinates(lat, lon);
-    $("#date").text(
-      `${city} (${moment().format("MMM, Do YYYY")})`
-    );
-    // for(var i=0;i<cities.length; i++){
+    $("#city").text(city)
+    $("#date").text(moment().format("MMM. Do YY"));
 
-    // }
+    //check if the name of the city is already in the cities array
     if(cities.includes(city)){
        cities.splice(cities.indexOf(city),1);
        cities.unshift(city);
-       console.log(cities);
     }else{
         cities.unshift(city);
     }
     renderRecentCity();
     
-  });
+  })
 }
 
+function searchByCoordinates(lat, lon) {
+    units = $("#units").val();
+    var queryUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&appid=${apikey}`;
+  
+    $.ajax({
+      url: queryUrl,
+      method: "GET",
+    }).then(function (response) {
+      currentForcast(response);
+      futrueFroecast(response);
+      storeData(cities);
+    });
+  }
+
 function renderRecentCity() {
+    $("#recent-search-card").css("display","block");
     $("#recent-search").text("");
     for(var i=0; i<cities.length;i++){
         recentCity = $("<p>");
         recentCity.text(cities[i]);
-        recentCity.addClass("recent-city");
-    // recentCity.click(function(){
-    //     console.log($(this));
-    // })
+        recentCity.addClass("recent-city uk-padding-small");
         $("#recent-search").append(recentCity);
+        addClick(recentCity);
+        
     }
   
 }
 
-function searchByCoordinates(lat, lon) {
-  units = $("#units").val();
-  var queryUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&appid=${apikey}`;
-
-  $.ajax({
-    url: queryUrl,
-    method: "GET",
-  }).then(function (response) {
-    currentForcast(response);
-    futrueFroecast(response);
-    storeData(cities);
-  });
+function addClick(city){
+    city.click(function(event){
+        searchByName(event.target.textContent);
+    })
 }
+
+
 
 function currentForcast(data){
     var icon = $("<img>");
@@ -75,8 +88,9 @@ function currentForcast(data){
       "src",
       `http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`
     );
+    icon.attr("alt","weather icon");
 
-    $("#date").append(icon);
+    $("#city").append(icon);
     $("#temp").text(`temp: ${Math.round(data.current.temp)}`);
     $("#wind").text(`wind: ${data.current.wind_speed}`);
     $("#humidity").text(`Humidity: ${data.current.humidity}%`);
@@ -101,7 +115,6 @@ function currentForcast(data){
 function futrueFroecast(data) {
   $("#5day-forecast").text("");
   for (var i = 0; i < days; i++) {
-    console.log(Math.round(data.daily[i].temp.max));
     var column = $("<div>");
     column.addClass("uk-width-1-5@s");
     var card = $("<div>");
@@ -136,10 +149,16 @@ function storeData(array) {
 getData();
 function getData() {
   cities = JSON.parse(localStorage.getItem("cities"));
-  console.log(cities);
   if (cities === null || cities.length === 0) {
     cities = [];
+    $("#recent-search-card").css("display","none");
   } else {
     searchByName(cities[0]);
   }
 }
+
+
+//clear input field when clicked
+$("#city-name").click(function(){
+    $("#city-name").val("");
+})

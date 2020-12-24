@@ -1,6 +1,6 @@
 #weather-info{
     display:none
-}
+} 
 
 #city-name{
     padding-left: 10px;
@@ -11,16 +11,29 @@
 h3{
     margin: 0;
 }
-#recent-header{
-    padding:10px
+#recent-search-card{
+    margin-bottom: 20px;
 }
 
 .recent-city{
     border: 1px solid lightgray;
     margin: 0;
-    padding: 10px;
+    cursor: pointer;
+}
+.recent-city:hover{
+    background-color: rgb(238, 238, 238,0.5);
+}
+.recent-city:active{
+    background-color: rgb(238, 238, 238);
 }
 
+/*uv Index styles*/
+#uvIndex{
+    padding:5px 20px;
+    font-weight: bold;
+    border-radius: 10%;
+    margin-left: 10px;
+}
 .low{
     background-color: green;
 }
@@ -37,19 +50,18 @@ h3{
     background-color: rebeccapurple;
 }
 
-#uvIndex{
-    padding:5px 20px;
-    font-weight: bold;
-    border-radius: 10%;
-    margin-left: 10px;
-}
 
+/*5 day forecast card styles*/
 .card{
     padding:10px;
     margin: 10px 0;
 }
 
 @media only screen and (max-width:640px){
+    #weather-info{
+        text-align: center;
+    }
+
     .card{
         align-content:space-btween !important;
     }
