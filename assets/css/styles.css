@@ -1,18 +1,33 @@
 #weather-info{
     display:none
-}
+} 
 
-#city-name{
+.padding-left{
     padding-left: 10px;
 }
-#units{
-    padding-left: 10px;
+#recent-search-card{
+    margin-bottom: 20px;
 }
 
 .recent-city{
-    background-color: lightgray;
+    border: 1px solid lightgray;
+    margin: 0;
+    cursor: pointer;
+}
+.recent-city:hover{
+    background-color: rgb(238, 238, 238,0.5);
+}
+.recent-city:active{
+    background-color: rgb(238, 238, 238);
 }
 
+/*uv Index styles*/
+#uvIndex{
+    padding:5px 20px;
+    font-weight: bold;
+    border-radius: 10%;
+    margin-left: 10px;
+}
 .low{
     background-color: green;
 }
@@ -29,19 +44,19 @@
     background-color: rebeccapurple;
 }
 
-#uvIndex{
-    padding:5px 20px;
-    font-weight: bold;
-    border-radius: 10%;
-    margin-left: 10px;
-}
 
+/*5 day forecast card styles*/
 .card{
     padding:10px;
     margin: 10px 0;
 }
 
+/* media query */
 @media only screen and (max-width:640px){
+    #weather-info{
+        text-align: center;
+    }
+
     .card{
         align-content:space-btween !important;
     }
