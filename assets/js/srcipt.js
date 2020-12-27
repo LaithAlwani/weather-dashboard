@@ -10,15 +10,15 @@ var lat;
 var lon;
 
 $("#units").on("change", function(){
-    if($("#city-name").val().length >0){
-        searchByName($("#city-name").val().toUpperCase());
+    if($("#city-name-input").val().length >0){
+        searchByName($("#city-name-input").val().toUpperCase());
     }   
     
 })
 
 $("#search-button").click(function (event) {
     event.preventDefault();
-  var cityName = $("#city-name").val().toUpperCase();
+  var cityName = $("#city-name-input").val().toUpperCase();
   searchByName(cityName);
 });
 
@@ -32,7 +32,7 @@ function searchByName(city) {
     lon = response.coord.lon;
     searchByCoordinates(lat, lon);
     $("#city").text(city)
-    $("#date").text(moment().format("MMM. Do YY"));
+    
 
     //check if the name of the city is already in the cities array
     if(cities.includes(city)){
@@ -70,7 +70,7 @@ function renderRecentCity() {
         $("#recent-search").append(recentCity);
         recentCity.click(function(event){
             searchByName(event.target.textContent);
-            $("#city-name").val(event.target.textContent);
+            $("#city-name-input").val(event.target.textContent);
         })
         
     } 
@@ -85,6 +85,7 @@ function currentForcast(data,unit){
     icon.attr("alt","weather icon");
 
     $("#city").append(icon);
+    $("#date").text(moment().format("MMM. Do, YYYY"));
     if(unit ==="Metric"){
         $("#temp").text(`temp: ${Math.round(data.current.temp)}${String.fromCharCode(176)}C`);
         $("#wind").text(`wind: ${data.current.wind_speed} Kmh`);
@@ -164,6 +165,6 @@ function getData() {
 
 
 //clear input field when clicked
-$("#city-name").click(function(){
-    $("#city-name").val("");
+$("#city-name-input").click(function(){
+    $("#city-name-input").val("");
 })

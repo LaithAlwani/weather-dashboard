@@ -2,14 +2,8 @@
     display:none
 } 
 
-#city-name{
+.padding-left{
     padding-left: 10px;
-}
-#units{
-    padding-left: 10px;
-}
-h3{
-    margin: 0;
 }
 #recent-search-card{
     margin-bottom: 20px;
@@ -57,6 +51,7 @@ h3{
     margin: 10px 0;
 }
 
+/* media query */
 @media only screen and (max-width:640px){
     #weather-info{
         text-align: center;
