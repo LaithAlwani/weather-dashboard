@@ -93,11 +93,11 @@ function currentForcast(data,unit){
     $("#city").append(icon);
     $("#date").text(moment().format("MMM. Do, YYYY"));
     if(unit ==="Metric"){
-        $("#temp").text(`temp: ${Math.round(data.current.temp)}${String.fromCharCode(176)}C`);
-        $("#wind").text(`wind: ${data.current.wind_speed} Kmh`);
+        $("#temp").text(`Temperature: ${Math.round(data.current.temp)}${String.fromCharCode(176)}C`);
+        $("#wind").text(`Wind: ${data.current.wind_speed} Kmh`);
     }else{
-        $("#temp").text(`temp: ${Math.round(data.current.temp)}${String.fromCharCode(176)}F`);
-        $("#wind").text(`wind: ${data.current.wind_speed} Mph`);
+        $("#temp").text(`Temperature: ${Math.round(data.current.temp)}${String.fromCharCode(176)}F`);
+        $("#wind").text(`Wind: ${data.current.wind_speed} Mph`);
     }
     
     $("#humidity").text(`Humidity: ${data.current.humidity}%`);
