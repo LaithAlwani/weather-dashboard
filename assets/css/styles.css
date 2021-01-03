@@ -1,3 +1,4 @@
+/*current weather styles*/
 #weather-info{
     display:none
 } 
@@ -5,6 +6,7 @@
 .padding-left{
     padding-left: 10px;
 }
+/*recent search styles*/
 #recent-search-card{
     margin-bottom: 20px;
 }
