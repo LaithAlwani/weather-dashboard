@@ -9,11 +9,11 @@ var cities = [];
 var lat;
 var lon;
 
+//makes an ajax call to the api when the value of the units is changed
 $("#units").on("change", function(){
     if($("#city-name-input").val().length >0){
         searchByName($("#city-name-input").val().toUpperCase());
     }   
-    
 })
 
 $("#search-button").click(function (event) {
@@ -21,7 +21,7 @@ $("#search-button").click(function (event) {
   var cityName = $("#city-name-input").val().toUpperCase();
   searchByName(cityName);
 });
-
+// ajax call by cities name to get the city coordinates
 function searchByName(city) {
   tempQueryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
   $.ajax({
@@ -45,7 +45,7 @@ function searchByName(city) {
     
   })
 }
-
+//uses the city coordinates from the function above to get the weather data for 7 days
 function searchByCoordinates(lat, lon) {
     units = $("#units").val();
     var queryUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&appid=${apikey}`;
@@ -60,9 +60,15 @@ function searchByCoordinates(lat, lon) {
     });
   }
 
+//renders recently searched cities
 function renderRecentCity() {
     $("#recent-search-card").css("display","block");
     $("#recent-search").text("");
+    //limits the recent search list to 5 cities
+    if(cities.length >5){
+      cities.length = 5;
+    }
+    //loops through cities array and rendes the values
     for(var i=0; i<cities.length;i++){
         recentCity = $("<p>");
         recentCity.text(cities[i]);
@@ -148,10 +154,12 @@ function futrueFroecast(data,unit) {
   }
 }
 
+//stores recent seached cities to local storage
 function storeData(array) {
   localStorage.setItem("cities", JSON.stringify(array));
 }
 
+//fetches local storage data and saved it as an array of cities
 getData();
 function getData() {
   cities = JSON.parse(localStorage.getItem("cities"));
