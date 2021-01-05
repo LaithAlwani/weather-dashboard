@@ -112,7 +112,7 @@ function currentForcast(data,unit){
     } else if (data.current.uvi >= 8 && data.current.uvi < 11) {
       $("#uvIndex").addClass("very-high");
     } else {
-      $("#uvIndex").addClass("extrem");
+      $("#uvIndex").addClass("extreme");
     }
     //changing disoplay for weather info
     $("#weather-info").css("display", "block");
