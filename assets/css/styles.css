@@ -35,8 +35,9 @@
 }
 .uvLegend{
     padding: 5px 10px;
-    border-radius: 0.2em;
-    text-align: center;
+    border-radius: 5px;
+    width: 70%;
+    margin: 5px auto;
 }
 .low{
     background-color: green;
