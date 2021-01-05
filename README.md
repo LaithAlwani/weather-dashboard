@@ -13,13 +13,15 @@ Current weather diplays the following"
 * current temperture
 * wind speed
 * humidity
-* UVIndex
+* UVIndex (click on uvindex value to see the uvindex legned)
 
 5day weather displays:
 * the date
 * forecast
 * highest temperture during that day
 * humidity 
+
+
 
 technologies used in the app are: 
 * Html

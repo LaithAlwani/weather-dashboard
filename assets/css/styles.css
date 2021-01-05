@@ -30,19 +30,29 @@
     border-radius: 10%;
     margin-left: 10px;
 }
+#uvindex-card{
+    max-width: 200px;
+}
+.uvLegend{
+    padding: 5px 10px;
+    border-radius: 0.2em;
+    text-align: center;
+}
 .low{
     background-color: green;
 }
 .moderate{
     background-color: yellow;
+    color:black;
 }
 .high{
     background-color: orange;
+    color:black;
 }
 .very-high{
     background-color: red;
 }
-.extrem{
+.extreme{
     background-color: rebeccapurple;
 }
 
