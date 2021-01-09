@@ -7,7 +7,7 @@ a succesful search will present:
 * 5 day weather conidtions 
 * the name of the city will be added to recnet seach list which displays a users last 5 recent searches
 
-Current weather diplays the following"
+Current weather diplays the following:
 * city name and current forecast
 * todays date
 * current temperture
@@ -15,17 +15,23 @@ Current weather diplays the following"
 * humidity
 * UVIndex (click on uvindex value to see the uvindex legned)
 
+![Current Weather](assets/images/weather.jpg)
+
 5day weather displays:
 * the date
 * forecast
 * highest temperture during that day
 * humidity 
 
-
+![5 day forecast](assets/images/forecast.jpg)
 
 technologies used in the app are: 
 * Html
 * CSS ( UIkit framework was used for learning purposes)
 * javascript
+
+![mobile view](assets/images/mobile-view.jpg)
+
+Visit [Weather Dashboard](https://laithalwani.github.io/weather-dashboard/)
 
 MIT lisence is used.
