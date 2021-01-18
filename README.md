@@ -34,4 +34,6 @@ technologies used in the app are:
 
 Visit [Weather Dashboard](https://laithalwani.github.io/weather-dashboard/)
 
-MIT lisence is used.
+please contact me at laithalwani@gmail.com for further informations.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
